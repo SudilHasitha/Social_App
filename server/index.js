@@ -19,6 +19,8 @@ import User from './models/user.js';
 import Post from './models/post.js';
 import { users, posts } from './data/index.js';
 
+
+
 // configurations
 const __filename = fileURLToPath(import.meta.url);      // to upload files
 const __dirname = path.dirname(__filename);             // to upload files  
@@ -28,7 +30,8 @@ app.use(helmet());                                      // to secure the app
 app.use(express.json({ limit: '30mb', extended: true }));   // to parse the body of the request
 app.use(express.urlencoded({ limit: '30mb', extended: true })); // to parse the body of the request
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' })); // to secure the app
-app.use(cors());                                        // to connect to the frontend
+// Enable CORS for all routes
+app.use(cors());                                       // to connect to the frontend
 app.use(morgan('common'));                              // to log the requests
 app.use('/asserts', express.static(path.join(__dirname, 'public/asserts'))); // to upload files need to change to S3 bucket
 
@@ -49,7 +52,7 @@ const upload = multer({ storage: storage });         // to upload files
 2. The second parameter is the middleware. In this case, we use the upload.single("picture") middleware. This middleware is used to handle file upload. The 'picture' word in the upload.single("picture") is the name of the file input in the form.
 3. The third parameter is the controller function. In this case, we use the register function in the controllers/auth.js file. 
 */
-app.post('auth/register', upload.single("picture"), register); // to upload files
+app.post('/auth/register', upload.single("picture"), register); // to upload files
 app.post('/post', verifyToken,upload.single("picture"), createPost); // to upload files
 
 // Routes without files
