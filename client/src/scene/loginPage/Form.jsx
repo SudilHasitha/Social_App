@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";// useNavigate is a library that 
 import { useDispatch } from "react-redux";// useDispatch is a library that helps with redux
 import { setLogin } from "state";/* setLogin is a function that helps with redux */
 import Dropzone from "react-dropzone";/* Dropzone is a library that helps with file uploads */
-import FlexBetween from "components/FlexBetween";/* FlexBetween is a component that helps with flexbox */
+import FlexBetween from "component/flexBetween";/* FlexBetween is a component that helps with flexbox */
 
 // yup is a library that helps with form validation
 const registerSchema = yup.object().shape({// yup.object() is a function that helps with form validation
